@@ -4,19 +4,34 @@ const url =
   "mongodb+srv://FumoSapian:1putlbL42gV8Ao1I@finalproject.xcwgz32.mongodb.net/?retryWrites=true&w=majority&appName=FinalProject";
 const client = new MongoClient(url);
 const coffee = [
-{name: 'black', type: 'hot', season: 'winter'},
-{name: 'sweet', type: 'hot', season: 'spring'},
-{name: 'mocha', type: 'hot', season: 'spring'}
 ];
 
+//user input to add into the database
+
+async function addToDataBase(){
+  const prompt = require('prompt-sync')();
+  const userData = prompt ("Please enter the name of the coffee you would like to addToDataBase : ");
+  const userTemp = prompt ("Please enter the tempurate of the coffee that best suits for it :");
+  const userSeason = prompt ("Please enter tje season of the coffee that best suits for it : ");
+  const addMore = prompt ("Would you like to add more to the database ? type yes to add more. : ");
+  const ListEntry = ('[{name: ' + userData + ',  type: ' + userTemp + ', season: ' + userSeason + '}]');
+  result = await coffeeList.insertMany(ListEntry);
+  console.log(result.insertedIds);
+  console.log ("Coffee Inserted Successfully");
+  
+  if (addMore == 'yes')
+  {
+    addToDataBase();
+  }
+}
+
+//base function of the database
 async function run() {
     try {
-        await client.connect();
-        database = client.db('CoffeList');
+        database = client.db('CoffeeList');
         coffeeList = database.collection('List of Coffee')
-        result = await coffeeList.insertMany(coffee);
-        console.log ("Coffee Inserted Successfully");
-        console.log(result.insertedIds);
+        await client.connect();
+        addToDataBase();
     } finally {
     await client.close();
     }
