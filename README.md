@@ -8,8 +8,9 @@
 
 ## How to use :
 
-Run the src folder into command and it will prompt you to add a type of coffee to add onto the list, as well as the tempurature and season. 
-after which this files will be uploaded to the mongodb server to pickup and export the database collection
+Run the src folder into command and it will prompt you to add a type of coffee to add onto the list or to view the collection through the mongo directory with the 'View Collection' Line, as well as the tempurature and season. 
+after which this files will be uploaded to the mongodb server to pickup and export the database collection.
+
 
 ## Screenshots of it being used
 
